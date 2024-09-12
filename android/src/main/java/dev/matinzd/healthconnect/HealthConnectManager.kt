@@ -164,7 +164,7 @@ class HealthConnectManager(private val applicationContext: ReactApplicationConte
           if(response !== null) {
             promise.resolve(ReactHealthRecord.parseAggregationResultGroupedByDuration(recordType, response))
           } else {
-            promise.rejectWithException("Response is not provided")
+            throw Exception("Response is not provided")
           }
         } catch (e: Exception) {
           promise.rejectWithException(e)
