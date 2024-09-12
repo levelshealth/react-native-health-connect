@@ -73,10 +73,10 @@ class ReactHealthRecord {
       return recordClass.getAggregateRequest(reactRequest)
     }
 
-    fun getAggregateGroupByDurationRequest(recordType: String, reactRequest: ReadableMap): AggregateGroupByDurationRequest? {
+    fun getAggregateGroupedByDurationRequest(recordType: String, reactRequest: ReadableMap): AggregateGroupByDurationRequest? {
       val recordClass = createReactHealthRecordInstance<Record>(recordType)
 
-      return recordClass.getAggregateGroupByDurationRequest(reactRequest)
+      return recordClass.getAggregateGroupedByDurationRequest(reactRequest)
     }
 
     fun parseAggregationResult(recordType: String, result: AggregationResult): WritableNativeMap {

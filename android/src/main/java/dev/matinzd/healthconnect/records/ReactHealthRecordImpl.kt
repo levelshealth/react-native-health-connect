@@ -16,6 +16,6 @@ interface ReactHealthRecordImpl<T : Record> {
   fun getAggregateRequest(record: ReadableMap): AggregateRequest
   fun parseAggregationResult(record: AggregationResult): WritableNativeMap
 
-  fun getAggregateGroupByDurationRequest(record: ReadableMap): AggregateGroupByDurationRequest ? = null
+  fun getAggregateGroupedByDurationRequest(record: ReadableMap): AggregateGroupByDurationRequest ? = null
   fun parseAggregationResultGroupedByDuration(record: List<AggregationResultGroupedByDuration>): WritableNativeArray ? = null
 }

@@ -46,7 +46,7 @@ class ReactStepsRecord : ReactHealthRecordImpl<StepsRecord> {
     )
   }
 
-  override fun getAggregateGroupByDurationRequest(record: ReadableMap): AggregateGroupByDurationRequest {
+  override fun getAggregateGroupedByDurationRequest(record: ReadableMap): AggregateGroupByDurationRequest {
     return AggregateGroupByDurationRequest(
       metrics = setOf(StepsRecord.COUNT_TOTAL),
       timeRangeFilter = record.getTimeRangeFilter("timeRangeFilter"),

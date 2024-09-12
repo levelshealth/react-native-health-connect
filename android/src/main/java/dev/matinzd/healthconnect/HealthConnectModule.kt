@@ -71,8 +71,8 @@ class HealthConnectModule internal constructor(context: ReactApplicationContext)
   }
 
   @ReactMethod
-  override fun aggregateGroupByDurationRecord(record: ReadableMap, promise: Promise) {
-    return manager.aggregateGroupByDurationRecord(record, promise)
+  override fun aggregateRecordsGroupedByDuration(record: ReadableMap, promise: Promise) {
+    return manager.aggregateRecordsGroupedByDuration(record, promise)
   }
 
   @ReactMethod

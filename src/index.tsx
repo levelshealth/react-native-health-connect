@@ -155,23 +155,23 @@ interface ResultBase {
   startDate: string;
   dataOrigins: string[];
 }
-interface StepsResult extends ResultBase {
+export interface StepsResult extends ResultBase {
   steps: number;
 }
 
-interface HeartRatesResult extends ResultBase {
+export interface HeartRatesResult extends ResultBase {
   value: number;
 }
 
-interface AggregatedResult {
+export interface AggregatedResult {
   Steps: StepsResult[];
   HeartRate: HeartRatesResult[];
 }
 
-export function aggregateGroupByDurationRecord<
+export function aggregateRecordsGroupedByDuration<
   T extends keyof AggregatedResult
 >(request: AggregateAndGroupRequest<T>): Promise<AggregatedResult[T]> {
-  return HealthConnect.aggregateGroupByDurationRecord(request);
+  return HealthConnect.aggregateRecordsGroupedByDuration(request);
 }
 
 export function getChanges(

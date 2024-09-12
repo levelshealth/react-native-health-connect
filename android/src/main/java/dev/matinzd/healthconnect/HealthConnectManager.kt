@@ -148,12 +148,12 @@ class HealthConnectManager(private val applicationContext: ReactApplicationConte
     }
   }
 
-  fun aggregateGroupByDurationRecord(record: ReadableMap, promise: Promise) {
+  fun aggregateRecordsGroupedByDuration(record: ReadableMap, promise: Promise) {
     throwUnlessClientIsAvailable(promise) {
       coroutineScope.launch {
         try {
           val recordType = record.getString("recordType") ?: ""
-          val response = ReactHealthRecord.getAggregateGroupByDurationRequest(
+          val response = ReactHealthRecord.getAggregateGroupedByDurationRequest(
             recordType, record
           )?.let {
             healthConnectClient.aggregateGroupByDuration(

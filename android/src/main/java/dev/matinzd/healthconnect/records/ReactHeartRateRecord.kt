@@ -73,7 +73,7 @@ class ReactHeartRateRecord : ReactHealthRecordImpl<HeartRateRecord> {
   }
 
 
-  override fun getAggregateGroupByDurationRequest(record: ReadableMap): AggregateGroupByDurationRequest {
+  override fun getAggregateGroupedByDurationRequest(record: ReadableMap): AggregateGroupByDurationRequest {
     return AggregateGroupByDurationRequest(
       metrics = setOf(
         HeartRateRecord.BPM_AVG,
