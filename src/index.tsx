@@ -12,6 +12,7 @@ import type {
   ReadRecordsResult,
   GetChangesRequest,
   GetChangesResults,
+  AggregateAndGroupRequest,
 } from './types';
 import type { TimeRangeFilter } from './types/base.types';
 
@@ -148,6 +149,29 @@ export function aggregateRecord<T extends AggregateResultRecordType>(
   request: AggregateRequest<T>
 ): Promise<AggregateResult<T>> {
   return HealthConnect.aggregateRecord(request);
+}
+
+interface ResultBase {
+  startDate: string;
+  dataOrigins: string[];
+}
+export interface StepsResult extends ResultBase {
+  steps: number;
+}
+
+export interface HeartRatesResult extends ResultBase {
+  value: number;
+}
+
+export interface AggregatedResult {
+  Steps: StepsResult[];
+  HeartRate: HeartRatesResult[];
+}
+
+export function aggregateRecordsGroupedByDuration<
+  T extends keyof AggregatedResult
+>(request: AggregateAndGroupRequest<T>): Promise<AggregatedResult[T]> {
+  return HealthConnect.aggregateRecordsGroupedByDuration(request);
 }
 
 export function getChanges(
