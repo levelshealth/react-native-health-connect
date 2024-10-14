@@ -97,37 +97,41 @@ class ReactExerciseSessionRecord : ReactHealthRecordImpl<ExerciseSessionRecord> 
         }
       })
 
-
-      when (record.exerciseRouteResult) {
-        is ExerciseRouteResult.Data -> {
-          val exerciseRouteMap = WritableNativeMap()
-          exerciseRouteMap.putArray("route", WritableNativeArray().apply {
-            (record.exerciseRouteResult as ExerciseRouteResult.Data).exerciseRoute.route.map {
-              val map = WritableNativeMap()
-              map.putString("time", it.time.toString())
-              map.putDouble("latitude", it.latitude)
-              map.putDouble("longitude", it.longitude)
-              map.putMap("horizontalAccuracy", lengthToJsMap(it.horizontalAccuracy))
-              map.putMap("verticalAccuracy", lengthToJsMap(it.verticalAccuracy))
-              map.putMap("altitude", lengthToJsMap(it.altitude))
-              this.pushMap(map)
-            }
-          })
-          putMap("exerciseRoute", exerciseRouteMap)
-        }
-
-        is ExerciseRouteResult.NoData -> {
-          putMap("exerciseRoute", WritableNativeMap())
-        }
-
-        is ExerciseRouteResult.ConsentRequired -> {
-          throw Exception("Consent required")
-        }
-
-        else -> {
-          putMap("exerciseRoute", WritableNativeMap())
-        }
-      }
+//  There's no need for us to import exercise routes. If a route exists for an exercise,
+//  the data import is cancelled with the "Consent required" exception.
+//  The lib does not handle this properly, see this GitHub link:
+//  https://github.com/matinzd/react-native-health-connect/issues/86
+//
+//      when (record.exerciseRouteResult) {
+//        is ExerciseRouteResult.Data -> {
+//          val exerciseRouteMap = WritableNativeMap()
+//          exerciseRouteMap.putArray("route", WritableNativeArray().apply {
+//            (record.exerciseRouteResult as ExerciseRouteResult.Data).exerciseRoute.route.map {
+//              val map = WritableNativeMap()
+//              map.putString("time", it.time.toString())
+//              map.putDouble("latitude", it.latitude)
+//              map.putDouble("longitude", it.longitude)
+//              map.putMap("horizontalAccuracy", lengthToJsMap(it.horizontalAccuracy))
+//              map.putMap("verticalAccuracy", lengthToJsMap(it.verticalAccuracy))
+//              map.putMap("altitude", lengthToJsMap(it.altitude))
+//              this.pushMap(map)
+//            }
+//          })
+//          putMap("exerciseRoute", exerciseRouteMap)
+//        }
+//
+//        is ExerciseRouteResult.NoData -> {
+//          putMap("exerciseRoute", WritableNativeMap())
+//        }
+//
+//        is ExerciseRouteResult.ConsentRequired -> {
+//          throw Exception("Consent required")
+//        }
+//
+//        else -> {
+//          putMap("exerciseRoute", WritableNativeMap())
+//        }
+//      }
 
       putMap("metadata", convertMetadataToJSMap(record.metadata))
     }
