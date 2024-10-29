@@ -79,7 +79,7 @@ class ReactHeartRateRecord : ReactHealthRecordImpl<HeartRateRecord> {
         HeartRateRecord.BPM_AVG,
       ),
       timeRangeFilter = record.getTimeRangeFilter("timeRangeFilter"),
-      timeRangeSlicer = Duration.ofDays(record.getInt("bucketInterval").toLong())
+      timeRangeSlicer = Duration.ofMinutes(record.getInt("bucketInterval").toLong())
     )
   }
 
